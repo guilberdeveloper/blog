@@ -1,0 +1,30 @@
+<%- include('partials/header.ejs'); %>
+
+  <div class="hero bg-neutral min-h-screen">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <div class="text-center lg:text-left text-neutral-content">
+        <h1 class="text-5xl font-bold text-accent">Faça login agora!</h1>
+        <p class="py-9 text-accent-content">
+          Descubra um mundo de ideias, inspirações e histórias. Bem-vindo ao espaço onde as palavras ganham vida!
+        </p>
+      </div>
+      <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div class="card-body">
+          <form action="/login" method="post">
+            <fieldset class="fieldset">
+              <label class="fieldset-label">E-mail</label>
+              <input type="email" class="input" name="email" placeholder="exemplo@email.com" />
+              <label class="fieldset-label">Senha</label>
+              <input type="password" class="input" name="password" placeholder="*******" />
+              <div><a class="link link-hover">Esqueceu sua senha?</a></div>
+              <button class="btn btn-accent mt-4">Entrar</button>
+              <div class="text-center mt-2">
+                <p>Não tem uma conta? <a href="/register" class="link link-hover">Crie uma agora.</a></p>
+              </div>
+  
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

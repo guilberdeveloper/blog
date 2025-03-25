@@ -1,0 +1,42 @@
+<%- include('partials/header.ejs'); %>
+
+<div class="hero bg-neutral min-h-screen">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <!-- Texto de introdução -->
+    <div class="text-center lg:text-left text-neutral-content">
+      <h1 class="text-5xl font-bold text-accent">Crie sua conta agora!</h1>
+      <p class="py-9 text-accent-content">
+        Junte-se a nós e explore um mundo de tecnologia, cultura geek e conhecimento ilimitado.
+      </p>
+    </div>
+
+    <!-- Formulário de cadastro -->
+    <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <div class="card-body">
+        <form action="/register" method="post">
+          <fieldset class="fieldset">
+            <label class="fieldset-label">Nome Completo</label>
+            <input type="text" class="input" name="name" placeholder="Seu nome completo" />
+            
+            <label class="fieldset-label">E-mail</label>
+            <input type="email" class="input" name="email" placeholder="exemplo@email.com" />
+            
+            <label class="fieldset-label">Senha</label>
+            <input type="password" class="input" name="password" placeholder="*******" />
+            
+            <label class="fieldset-label">Confirme sua senha</label>
+            <input type="password" class="input" name="confirmPassword" placeholder="*******" />
+            
+            <div class="mt-4">
+              <button class="btn btn-accent w-full">Cadastrar</button>
+            </div>
+            
+            <div class="text-center mt-2">
+              <p>Já tem uma conta? <a href="/login" class="link link-hover">Faça login</a></p>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<%- include('partials/header.ejs'); %>
+
+  <div class="min-h-screen bg-neutral text-neutral-content flex flex-col items-center">
+    <!-- Navbar -->
+    <div class="navbar bg-black shadow-md w-full">
+      <div class="flex-1">
+        <a class="text-2xl font-bold text-accent">GeekBlog</a>
+      </div>
+      <div class="flex-none">
+        <ul class="menu menu-horizontal p-0">
+          <li><a href="/home">Início</a></li>
+          <li><a href="/profile">Meu Perfil</a></li>
+          <li><a href="/logout">Sair</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Área de Criação de Postagens -->
+    <div class="bg-base-100 w-full max-w-3xl mt-8 p-6 rounded-lg shadow-lg">
+      <h2 class="text-xl font-bold text-accent mb-4 text-gray-800">Criar Nova Postagem</h2>
+      <form action="/posts" method="POST" class="space-y-7">
+        <input type="text" name="title" placeholder="Título da sua postagem" class="input input-bordered w-full placeholder-gray-500 text-gray-700" required />
+        <textarea name="content" placeholder="Escreva algo incrível..." class="textarea textarea-bordered w-full placeholder-gray-500 text-gray-700" rows="4" required></textarea>
+        <div class="flex justify-between items-center">
+          <button type="submit" class="btn btn-accent bg-accent text-white hover:bg-accent-focus">Publicar</button>
+        </div>
+      </form>
+    </div>
+    
+
+    <div class="feed-container w-full max-w-3xl mt-8 space-y-6 mb-20">
+      <% posts.forEach(post => { %>
+        <div class="card bg-base-100 shadow-md border border-gray-200">
+          <div class="card-body">
+            <div class="flex justify-between items-center">
+              <h2 class="card-title text-gray-800 font-semibold">
+                <%= post.title %>
+              </h2>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+              <%= post.content %>
+            </p>
+            <div class="flex justify-between items-center mt-4">
+              <p class="text-sm text-gray-500" style="font-weight: bold; color: black;">Publicado por <%= post.author ? post.author.name : "Autor desconhecido" %></p>
+              <div class="space-x-2">
+                <button class="btn btn-outline  btn-accent text-accent"  disabled="disabled">Curtir</button>
+                <button class="btn btn-outline  btn-accent text-accent"  disabled="disabled">Comentar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+    
+
+  <div class="bg-base-200 w-full max-w-3xl mt-16 mb-20 p-6 rounded-lg shadow-lg mx-auto text-center">
+    <h2 class="text-xl font-bold text-accent mb-4">Descubra Novos Tópicos</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <a href="#" class="btn btn-outline btn-accent">Tecnologia</a>
+      <a href="#" class="btn btn-outline btn-accent">Cultura Geek</a>
+      <a href="#" class="btn btn-outline btn-accent">Ciência</a>
+      <a href="#" class="btn btn-outline btn-accent">Programação</a>
+      <a href="#" class="btn btn-outline btn-accent">Jogos</a>
+      <a href="#" class="btn btn-outline btn-accent">Filmes e Séries</a>
+    </div>
+  </div>
+  
+
+  <script>
+    const form = document.querySelector('form'); // Seleciona o formulário
+    const feedContainer = document.querySelector('.feed-container'); // Seleciona o feed do container
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault(); // Previne o comportamento padrão do formulário
+
+      const title = form.title.value;
+      const content = form.content.value;
+
+      try {
+        const response = await fetch('/posts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, content }),
+        });
+
+        if (response.ok) {
+          const newPost = await response.json();
+
+          // Cria o HTML da nova postagem
+          const postHTML = `
+        <div class="card bg-base-100 shadow-md">
+          <div class="card-body">
+            <div class="flex justify-between items-center">
+              <h2 class="card-title text-accent">${newPost.title}</h2>
+            </div>
+            <p>${newPost.content}</p>
+            <div class="flex justify-between items-center mt-4">
+              <p class="text-sm text-gray-400">Publicado por ${newPost.author}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+          // Adiciona a postagem ao início do feed
+          feedContainer.insertAdjacentHTML('afterbegin', postHTML); // Insere antes do primeiro filho do feed
+          form.reset(); // Limpa o formulário
+        } else {
+          // Trata o erro retornado pelo servidor
+          const error = await response.json();
+          alert(error.error || 'Erro desconhecido ao criar a postagem.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Erro ao criar a postagem.');
+      }
+    });
+
+  </script>
+
+
+  <%- include('partials/footer.ejs'); %>

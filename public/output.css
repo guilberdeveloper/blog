@@ -1,0 +1,19 @@
+input::placeholder,
+textarea::placeholder {
+  color: #A0AEC0; /* Escolha uma cor contrastante */
+  font-weight: bold; /* Deixe o texto mais marcante */
+  font-size: 1rem; /* Ajuste o tamanho da fonte */
+  opacity: 1; /* Garante que o texto esteja 100% visível */
+}
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: #718096; /* Cor diferenciada ao focar */
+  font-style: italic; /* Pode estilizar com itálico */
+}
+
+.post-content {
+    color: #000000; /* Define a cor do texto */
+    font-size: 5rem; /* Ajuste o tamanho se necessário */
+    font-weight: normal; /* Adicione peso ao texto se necessário */
+  }
+  

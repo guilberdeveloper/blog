@@ -1,0 +1,30 @@
+<%- include('partials/header.ejs'); %>
+
+    <div class="navbar bg-neutral-900 text-neutral-content">
+        <div class="flex-1">
+            <img src="img/logo_sem_fundo.png" alt="Logo" class="w-8 h-8 mr-2">
+        </div>
+        <div class="flex-none">
+            <ul class="menu menu-horizontal px-1">
+                <% if (user) { %>
+                    <li><a href="/profile">Meu Perfil</a></li>
+                    <li><a href="/logout">Sair</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Faça Login</a></li>
+                        <li><a href="/register">Cadastra-se</a></li>
+                        <% } %>
+            </ul>
+        </div>
+    </div>
+
+    <div class="hero bg-neutral min-h-screen">
+        <div class="hero-content text-center">
+            <div class="max-w-md text-neutral-content">
+                <h1 class="text-5xl font-bold text-accent">Bem-vindo ao Noob Perguntas!</h1>
+                <p class="py-6 text-accent-content">
+                    Explorando tecnologia, cultura nerd e ciência com conteúdo divertido e informativo.
+                </p>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer.ejs'); %>
