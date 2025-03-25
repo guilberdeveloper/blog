@@ -23,6 +23,9 @@ const db = new Sequelize(process.env.MYSQLDATABASE,
       port: process.env.MYSQLPORT,
       dialect: 'mysql',
       dialectOptions: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
         connectTimeout: 60000, // Tempo limite aumentado para 60 segundos
       },
       pool: {
