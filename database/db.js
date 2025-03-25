@@ -15,16 +15,24 @@ const dialectDB = process.env.DIALECT_DB;
 
 // utilizando a opção 3 de conexão do sequelize
 
- const db = new Sequelize(process.env.MYSQLDATABASE,
+const db = new Sequelize(process.env.MYSQLDATABASE,
     process.env.MYSQLUSER,
     process.env.MYSQLPASSWORD,
     {
       host: process.env.MYSQLHOST,
       port: process.env.MYSQLPORT,
       dialect: 'mysql',
+      dialectOptions: {
+        connectTimeout: 60000, // Tempo limite aumentado para 60 segundos
+      },
+      pool: {
+        max: 5, // Número máximo de conexões no pool
+        min: 0, // Número mínimo de conexões no pool
+        acquire: 30000, // Tempo máximo para adquirir uma conexão (em ms)
+        idle: 10000, // Tempo máximo que uma conexão pode ficar ociosa antes de ser liberada (em ms)
+      },
     }
   );
-
 
 
 // Sincronizando a tabela de sessões
