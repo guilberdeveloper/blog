@@ -4,10 +4,10 @@ const { Sequelize } = require("sequelize");
 require('dotenv').config();
 
 
-const dbName = process.env.DB_NAME;
-const userDb = process.env.USER_DB;
-const passDB = process.env.PASS_DB;
-const hostdb = process.env.HOST_DB;
+const dbName = process.env.MYSQL_DATABASE;
+const userDb = process.env.MYSQLUSER;
+const passDB = process.env.MYSQL_ROOT_PASSWORD;
+const hostdb = process.env.MYSQLHOST;
 const dialectDB = process.env.DIALECT_DB;
 
 
