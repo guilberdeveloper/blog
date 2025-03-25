@@ -15,10 +15,16 @@ const dialectDB = process.env.DIALECT_DB;
 
 // utilizando a opção 3 de conexão do sequelize
 
- const db = new Sequelize(`${dbName}`, `${userDb}`, `${passDB}`, {
-    host: `${hostdb}`,
-    dialect: `${dialectDB}`
-});
+ const db = new Sequelize(process.env.MYSQLDATABASE,
+    process.env.MYSQLUSER,
+    process.env.MYSQLPASSWORD,
+    {
+      host: process.env.MYSQLHOST,
+      port: process.env.MYSQLPORT,
+      dialect: 'mysql',
+    }
+  );
+
 
 
 // Sincronizando a tabela de sessões
