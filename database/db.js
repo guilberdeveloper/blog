@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const dbName = process.env.MYSQL_DATABASE;
 const userDb = process.env.MYSQLUSER;
-const passDB = process.env.MYSQL_ROOT_PASSWORD;
+const passDB = process.env.MYSQLPASSWORD;
 const hostdb = process.env.MYSQLHOST;
 const dialectDB = process.env.DIALECT_DB;
 
