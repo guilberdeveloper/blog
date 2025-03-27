@@ -39,6 +39,12 @@ const db = new Sequelize(process.env.MYSQLDATABASE,
 
 
 // Sincronizando a tabela de sessões
-db.sync();
+db.sync({ force: true }) // ou { alter: true }
+    .then(() => {
+        console.log("Tabelas sincronizadas com sucesso!");
+    })
+    .catch((err) => {
+        console.error("Erro ao sincronizar tabelas:", err);
+    });
 
 module.exports = db; 

@@ -8,12 +8,13 @@ const passport = require("./config/passport.js");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
+const cors = require("cors");
 
 // Configuração do cookie-parser
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false})); // configuração do body-parser
 app.use(bodyParser.json()); // permite ler dados de usuários via json
-
+app.use(cors());
 const db = require("./database/db.js");
 
 // routes
