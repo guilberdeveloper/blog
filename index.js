@@ -17,10 +17,14 @@ app.use(bodyParser.json()); // permite ler dados de usuários via json
 app.use(cors());
 const db = require("./database/db.js");
 
+
+  
+
 // routes
 const publicRoutes = require("./routes/routes.js");
 const authRoute = require("./routes/authRoutes.js");
 const postRoutes = require("./routes/postRoutes.js");
+
 
 
 // adicionando e configurando o template de visualização front
@@ -49,6 +53,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(publicRoutes);
 app.use(authRoute);
 app.use(postRoutes);
+
+// Middleware para redirecionar rotas inexistentes
+app.use((req, res, next) => {
+    res.redirect('/');
+});
 
 
 try {

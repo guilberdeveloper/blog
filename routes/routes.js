@@ -17,11 +17,7 @@ function isGuest(req, res, next) {
     return next();
 }
 
-// Middleware para redirecionar rotas inexistentes
-router.use((req, res, next) => {
-    res.redirect('/');
-});
-  
+
   
 
 router.get("/", isGuest, async function(req, res) {
