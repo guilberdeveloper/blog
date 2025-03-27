@@ -27,7 +27,10 @@ async function register(req, res) {
 
         await UserModel.create({ name, email, password });
 
+        res.redirect("/login");
+        
         return res.status(201).render("register", { error: null, message: "Usuário cadastrado com sucesso!" });
+
     } catch (error) {
         console.error(error);
         return res.status(500).render("register", { error: "Erro ao cadastrar usuário. Tente novamente mais tarde.", message: null });
